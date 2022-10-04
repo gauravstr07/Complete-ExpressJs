@@ -1,16 +1,23 @@
 const express = require("express");
-
+const reqFilter = require('./middleware');
 const app = express();
+
+app.use(express.json());
 
 const port = 5000;
 
+
+
 app.get("/", (req, res) => {
-  console.log('Data send by browser' , req.query);
-  res.send("Hello from nodeJs server Welcome " + req.query.name + " 💖");
+  res.send("Home page");
 });
 
-app.get("/about", (req, res) => {
-  res.send("About Page");
+app.get("/user", reqFilter, (req, res) => {
+  res.send("Welcome💦💞");
+});
+
+app.get("*", reqFilter, (req, res) => {
+  res.send("Page not found");
 });
 
 app.listen(port, () => {
