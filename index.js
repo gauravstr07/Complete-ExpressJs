@@ -5,7 +5,8 @@ const app = express();
 const port = 5000;
 
 app.get("/", (req, res) => {
-  res.send("Hello from nodeJs server💖");
+  console.log('Data send by browser' , req.query);
+  res.send("Hello from nodeJs server Welcome " + req.query.name + " 💖");
 });
 
 app.get("/about", (req, res) => {
